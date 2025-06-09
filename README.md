@@ -8,7 +8,7 @@ CineInfo is a clean and simple Streamlit app that lets you search for any movie 
 
 ## 🚀 Live Link
 
-🔗 [Click here to try CineInfo in your browser]()  
+🔗 [Click here to try CineInfo in your browser](https://cineinfo.streamlit.app/)  
 
 ---
 
