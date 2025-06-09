@@ -75,7 +75,7 @@ For this demo, the app is already set up with the placeholder API key: 517abc65
 cineinfo/
 │
 ├── streamlit_app.py       # Main Streamlit interface
-├── utils.py               # Movie data fetching logic
+├── util.py               # Movie data fetching logic
 ├── requirements.txt       # Python dependencies
 └── README.md              # Project documentation
 
