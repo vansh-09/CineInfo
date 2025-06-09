@@ -4,7 +4,7 @@ from util import fetch_movie_data
 
 st.set_page_config(page_title="🎬 CineInfo", layout="centered")
 
-st.title("🎬 CineInfo: Movie Insights Powered by OMDb")
+st.title("🎬 CineInfo: Movie Insights Provider (idk what else to name it)")
 
 movie_title = st.text_input("Enter a movie name")
 
