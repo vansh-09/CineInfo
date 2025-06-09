@@ -36,12 +36,6 @@ CineInfo is a clean and simple Streamlit app that lets you search for any movie 
 
 ---
 
-## 📷 App Preview
-
-> Coming Soon (You can add screenshots or a demo video here)
-
----
-
 ## ⚙️ Getting Started
 
 ### 1. Clone the repository
