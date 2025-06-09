@@ -1,4 +1,5 @@
 import streamlit as st
+import requests
 from util import fetch_movie_data
 
 st.set_page_config(page_title="🎬 CineInfo", layout="centered")
