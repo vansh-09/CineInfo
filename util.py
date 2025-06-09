@@ -1,13 +1,13 @@
 import requests
 
-API_KEY = "517abc65"
-OMDB_URL = "http://www.omdbapi.com/"
+def fetch_movie_data(movie_name):
+    api_key = "517abc65"  # Already noted
+    url = f"http://www.omdbapi.com/?t={movie_name}&apikey={api_key}"
 
-def fetch_movie_data(title):
-    params = {"t": title, "apikey": API_KEY}
-    response = requests.get(OMDB_URL, params=params)
-    if response.status_code == 200:
-        data = response.json()
-        if data.get("Response") == "True":
-            return data
-    return None
+    response = requests.get(url)
+    data = response.json()
+
+    if data.get("Response") == "True":
+        return data
+    else:
+        return None
