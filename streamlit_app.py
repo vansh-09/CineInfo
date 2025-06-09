@@ -1,45 +1,48 @@
 import streamlit as st
 import requests
 
-st.set_page_config(page_title="CineInfo", page_icon="🎬", layout="centered")
+# Page config
+st.set_page_config(page_title="🎬 CineInfo", layout="centered")
 
-st.title("🎬 CineInfo: Movie Insights (idk what to name it)")
-st.markdown("Enter a movie name to get details instantly!")
+# OMDb API key
+API_KEY = "517abc65"
 
-#API Request 
-def fetch_movie_data(movie_name):
-    api_key = "517abc65"
-    exact_url = f"http://www.omdbapi.com/?t={movie_name}&apikey={api_key}"
-    search_url = f"http://www.omdbapi.com/?s={movie_name}&apikey={api_key}"
+# Title
+st.title("🎬 CineInfo: Movie Insights")
+st.subheader("Get instant details about any movie!")
 
-    exact_response = requests.get(exact_url).json()
+# Input
+movie_title = st.text_input("Enter a movie name")
 
-    if exact_response.get("Response") == "True":
-        return exact_response
-    else:
-        search_response = requests.get(search_url).json()
-        if search_response.get("Response") == "True":
-            first_title = search_response["Search"][0]["Title"]
-            fallback_url = f"http://www.omdbapi.com/?t={first_title}&apikey={api_key}"
-            fallback_response = requests.get(fallback_url).json()
-            return fallback_response
+# Fetch function
+def fetch_movie_data(title):
+    url = f"http://www.omdbapi.com/?t={title}&apikey={API_KEY}"
+    response = requests.get(url)
+    return response.json()
+
+# Handle search
+if movie_title:
+    data = fetch_movie_data(movie_title)
+
+    if data.get("Response") == "True":
+        # Display Poster with safety check
+        poster_url = data.get("Poster")
+        if poster_url and poster_url != "N/A":
+            st.image(poster_url, width=250)
         else:
-            return None
+            fallback_poster = "https://via.placeholder.com/250x370.png?text=No+Poster+Available"
+            st.image(fallback_poster, width=250)
 
-#Input 
-movie_name = st.text_input("Enter a movie name")
-
-#Fetch & Display
-if movie_name:
-    data = fetch_movie_data(movie_name.strip())
-
-    if data:
-        st.subheader(data.get("Title", "N/A"))
-        st.image(data.get("Poster"), width=250)
-        st.markdown(f"**Genre:** {data.get('Genre', 'N/A')}")
-        st.markdown(f"**Released:** {data.get('Released', 'N/A')}")
-        st.markdown(f"**Director:** {data.get('Director', 'N/A')}")
-        st.markdown(f"**Plot:** {data.get('Plot', 'N/A')}")
-        st.markdown(f"**IMDB Rating:** {data.get('imdbRating', 'N/A')}")
+        # Display Details
+        st.markdown("### 🎥 Title: " + data.get("Title", "N/A"))
+        st.markdown("**Year:** " + data.get("Year", "N/A"))
+        st.markdown("**Genre:** " + data.get("Genre", "N/A"))
+        st.markdown("**Director:** " + data.get("Director", "N/A"))
+        st.markdown("**Actors:** " + data.get("Actors", "N/A"))
+        st.markdown("**Plot:** " + data.get("Plot", "N/A"))
+        st.markdown("**IMDB Rating:** " + data.get("imdbRating", "N/A"))
+        st.markdown("**Runtime:** " + data.get("Runtime", "N/A"))
+        st.markdown("**Language:** " + data.get("Language", "N/A"))
+        st.markdown("**Awards:** " + data.get("Awards", "N/A"))
     else:
         st.error("❌ Movie not found. Try a different title.")
