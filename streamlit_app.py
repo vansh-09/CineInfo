@@ -8,7 +8,7 @@ st.set_page_config(page_title="🎬 CineInfo", layout="centered")
 API_KEY = "517abc65"
 
 # Title
-st.title("🎬 CineInfo: Movie Insights")
+st.title("🎬 CineInfo: Movie Insights (idk what to name it)")
 st.subheader("Get instant details about any movie!")
 
 # Input
