@@ -84,8 +84,8 @@ cineinfo/
 ---
 ## 👨‍💻 Made By
 
-Vansh Jain
-If this helped you, give it a ⭐ and connect on LinkedIn!
+Vansh Jain. 
+>If this helped you, give it a ⭐ and connect on LinkedIn!
 
 
 
